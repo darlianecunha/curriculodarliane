@@ -16,49 +16,76 @@
       --ink:#e9f0ff;
       --chip:#1a2243;
       --ok:#62d3a4;
+      --border: rgba(255,255,255,.12);
+    }
+    @media (prefers-color-scheme: light){
+      :root{
+        --bg:#f8fafc;
+        --card:#ffffff;
+        --muted:#51607d;
+        --primary:#2743ff;
+        --accent:#0b7a75;
+        --ink:#0f172a;
+        --chip:#eef2ff;
+        --border: rgba(15,23,42,.12);
+      }
+    }
+    [data-theme="light"]{
+      --bg:#f8fafc; --card:#ffffff; --muted:#51607d; --primary:#2743ff; --accent:#0b7a75; --ink:#0f172a; --chip:#eef2ff; --border: rgba(15,23,42,.12);
+    }
+    [data-theme="dark"]{
+      --bg:#0b1020; --card:#111731; --muted:#9fb0d3; --primary:#7aa2ff; --accent:#9bffef; --ink:#e9f0ff; --chip:#1a2243; --border: rgba(255,255,255,.12);
     }
     *{box-sizing:border-box}
     html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif;line-height:1.6}
     a{color:var(--accent);text-decoration:none}
     a:hover{text-decoration:underline}
     .wrap{max-width:1024px;margin:0 auto;padding:28px}
-    header{display:grid;grid-template-columns:160px 1fr;gap:18px;align-items:center;background:linear-gradient(135deg,#152250,#0e1632);border:1px solid rgba(255,255,255,.08);box-shadow:0 18px 36px rgba(0,0,0,.35);border-radius:18px;padding:18px 18px 18px 18px}
-    @media (max-width:720px){header{grid-template-columns:1fr} .photo{justify-self:center}}
-    .photo{width:150px;height:150px;border-radius:16px;background:#0d1430 center/cover no-repeat;border:1px solid rgba(255,255,255,.12)}
+    header{display:grid;grid-template-columns:160px 1fr;gap:18px;align-items:center;background:linear-gradient(135deg, color-mix(in oklab, var(--card), var(--bg) 30%), var(--bg));border:1px solid var(--border);box-shadow:0 18px 36px rgba(0,0,0,.20);border-radius:18px;padding:18px}
+    @media (max-width:720px){header{grid-template-columns:1fr} .avatar-wrap{justify-self:center}}
+    .avatar-wrap{width:150px;height:150px;border-radius:18px;padding:4px;background:var(--card);border:1px solid var(--border);display:grid;place-items:center}
+    .avatar{width:100%;height:100%;object-fit:cover;border-radius:50%}
     .hint{font-size:.82rem;color:var(--muted);margin-top:4px}
     h1{margin:0 0 2px;font-size:1.8rem}
-    .role{margin:0;color:#cfe0ff}
+    .role{margin:0;color:color-mix(in oklab, var(--ink), var(--muted) 40%)}
     .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
-    .chip{background:var(--chip);border:1px solid rgba(255,255,255,.1);padding:6px 10px;border-radius:999px;font-size:.82rem;color:#cfe0ff}
+    .chip{background:var(--chip);border:1px solid var(--border);padding:6px 10px;border-radius:999px;font-size:.82rem;color:color-mix(in oklab, var(--ink), var(--muted) 20%)}
     .grid{display:grid;grid-template-columns:2fr 1fr;gap:18px;margin-top:22px}
     @media (max-width:980px){.grid{grid-template-columns:1fr}}
-    .card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:18px;box-shadow:0 10px 24px rgba(0,0,0,.25)}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px;box-shadow:0 10px 24px rgba(0,0,0,.12)}
     h2{margin:0 0 10px;font-size:1.1rem;letter-spacing:.2px}
     ul{margin:10px 0 0 18px;padding:0}
     li{margin:.25rem 0}
     .pub{margin-bottom:10px}
-    .badge{display:inline-block;margin-left:6px;font-size:.72rem;padding:2px 8px;border-radius:999px;border:1px solid rgba(255,255,255,.15);color:#cfe0ff;background:rgba(255,255,255,.03)}
-    .ok{border-color:rgba(98,211,164,.4);color:#d9ffee;background:rgba(98,211,164,.1)}
+    .badge{display:inline-block;margin-left:6px;font-size:.72rem;padding:2px 8px;border-radius:999px;border:1px solid var(--border);color:color-mix(in oklab, var(--ink), var(--muted) 20%);background:rgba(127,127,127,.03)}
+    .ok{border-color:rgba(98,211,164,.4);color:color-mix(in oklab, var(--ink), #62d3a4 40%);background:rgba(98,211,164,.1)}
     .cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
-    .btn{display:inline-block;padding:10px 12px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.02);color:var(--ink)}
-    .btn:hover{background:rgba(255,255,255,.06)}
+    .btn{display:inline-block;padding:10px 12px;border-radius:10px;border:1px solid var(--border);background:rgba(127,127,127,.05);color:var(--ink)}
+    .btn:hover{background:rgba(127,127,127,.10)}
+    .theme{margin-left:auto}
     footer{opacity:.8;color:var(--muted);margin:28px 0 8px;text-align:center}
     .mono{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-size:.86rem}
   </style>
 </head>
 <body>
-  <div class="wrap">
+  <div class="wrap" id="root">
     <header>
-      <!-- Substitua o valor de background-image abaixo por 'url(assets/foto.jpg)' após enviar sua foto -->
-      <div class="photo" style="background-image:url('assets/foto.jpg');"></div>
+      <div class="avatar-wrap">
+        <img class="avatar" src="assets/foto.jpg" alt="Retrato de Darliane Ribeiro Cunha">
+      </div>
       <div>
-        <h1>Darliane Ribeiro Cunha</h1>
-        <p class="role">Pesquisadora &amp; Professora — Sustentabilidade, Portos &amp; ODS</p>
+        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+          <div>
+            <h1>Darliane Ribeiro Cunha</h1>
+            <p class="role">Pesquisadora &amp; Professora — Sustentabilidade, Portos &amp; ODS</p>
+          </div>
+          <button id="themeToggle" class="btn theme" type="button" aria-label="Alternar tema">Alternar tema</button>
+        </div>
         <div class="chips">
           <span class="chip">PhD em Contabilidade &amp; Finanças</span>
           <span class="chip">Erasmus University Rotterdam (visitante)</span>
           <span class="chip">UFMA</span>
-          <span class="chip">Text‑mining (Python)</span>
+          <span class="chip">Text-mining (Python)</span>
         </div>
         <div class="cta">
           <a class="btn" href="#sobre">Sobre</a>
@@ -67,14 +94,13 @@
           <a class="btn" href="#projetos">Projetos</a>
           <a class="btn" href="#contato">Contato</a>
         </div>
-        <p class="hint">Dica: envie um arquivo <span class="mono">assets/foto.jpg</span> para exibir a sua foto.</p>
       </div>
     </header>
 
     <div class="grid">
       <section class="card" id="sobre">
         <h2>Sobre</h2>
-        <p>Sou professora e pesquisadora com mais de 20 anos de experiência em sustentabilidade aplicada ao setor portuário e marítimo, com foco em indicadores, relatórios e estratégias de descarbonização alinhadas à Agenda 2030. Atuo na integração entre ciência de dados (Python/text‑mining), políticas públicas e gestão para apoiar decisões baseadas em evidências.</p>
+        <p>Sou professora e pesquisadora com mais de 20 anos de experiência em sustentabilidade aplicada ao setor portuário e marítimo, com foco em indicadores, relatórios e estratégias de descarbonização alinhadas à Agenda 2030. Atuo na integração entre ciência de dados (Python/text-mining), políticas públicas e gestão para apoiar decisões baseadas em evidências.</p>
         <p>Experiência internacional em Espanha, Países Baixos e Alemanha; visitas técnicas aos portos de Rotterdam, Hamburgo e Valência. Tenho trabalhos publicados em <em>Marine Policy</em>, <em>Environment, Development and Sustainability</em> e <em>Regional Studies in Marine Science</em>, entre outros.</p>
       </section>
 
@@ -85,28 +111,28 @@
           <li>Relato de sustentabilidade (GRI/ESG) e SDGs</li>
           <li>Indicadores e índices compostos (modelagem e validação)</li>
           <li>Mineração de texto aplicada a relatórios e literatura</li>
-          <li>Interface porto‑cidade e políticas públicas</li>
+          <li>Interface porto-cidade e políticas públicas</li>
         </ul>
       </aside>
 
       <section class="card" id="publicacoes">
-        <h2>Publicações seleccionadas</h2>
+        <h2>Publicações selecionadas</h2>
 
         <div class="pub">
           <strong>SDG attributes: A sustainability assessment framework for Brazilian ports</strong>
-          <span class="badge">Marine Policy (ISSN 0308‑597X)</span> <span class="badge ok">2025</span>
+          <span class="badge">Marine Policy (ISSN 0308-597X)</span> <span class="badge ok">2025</span>
           <p>Propõe e aplica um índice de sustentabilidade para portos brasileiros alinhado aos ODS (7, 8, 9, 11, 12, 13, 14, 17), com 20 dimensões e 84 indicadores, oferecendo um framework prático de avaliação e melhorias.</p>
         </div>
 
         <div class="pub">
           <strong>A Bibliometric Analysis of Sustainable Development Goals in the Maritime Industry and Port Sector</strong>
-          <span class="badge">Regional Studies in Marine Science (ISSN 2352‑4855)</span> <span class="badge ok">2024</span>
+          <span class="badge">Regional Studies in Marine Science (ISSN 2352-4855)</span> <span class="badge ok">2024</span>
           <p>Revisão bibliométrica com IRaMuTeQ e VOSviewer; evidencia tendências como economia circular, economia azul e eficiência energética, e destaca a necessidade de colaboração interdisciplinar.</p>
         </div>
 
         <div class="pub">
           <strong>Sustainability practices for SDGs: a study of Brazilian ports</strong>
-          <span class="badge">Environment, Development and Sustainability (ISSN 1387‑585X / e‑ISSN 1573‑2975)</span>
+          <span class="badge">Environment, Development and Sustainability (ISSN 1387-585X / e-ISSN 1573-2975)</span>
           <p>Analisa práticas de sustentabilidade em relatórios de Autoridades Portuárias brasileiras (2017–2020), com maior incidência nos ODS 8, 11 e 14; iniciativas ainda incipientes em 2020.</p>
         </div>
       </section>
@@ -115,7 +141,7 @@
         <h2>Projetos &amp; redes</h2>
         <ul>
           <li><strong>Green Port Complex</strong> — Indicadores ligados aos ODS</li>
-          <li><strong>Green Connection</strong> — Hub de energia on‑shore e autónoma (OPS) em Itaqui‑MA</li>
+          <li><strong>Green Connection</strong> — Hub de energia on-shore e autónoma (OPS) em Itaqui-MA</li>
           <li><strong>Observatório Portuário</strong> — Análises e dashboards de sustentabilidade</li>
           <li>Colaborações: HAW Hamburg, Erasmus University Rotterdam, Univ. Zaragoza</li>
         </ul>
@@ -136,5 +162,21 @@
       <p>© 2025 · Página CV pronta para GitHub Pages. Salve como <span class="mono">index.html</span> ou <span class="mono">cv.html</span>.</p>
     </footer>
   </div>
+
+  <script>
+    (function(){
+      const root = document.getElementById('root');
+      const btn = document.getElementById('themeToggle');
+      // read stored preference
+      const pref = localStorage.getItem('theme');
+      if (pref === 'light' || pref === 'dark') document.documentElement.setAttribute('data-theme', pref);
+      btn.addEventListener('click', () => {
+        const cur = document.documentElement.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        const next = cur === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+      });
+    })();
+  </script>
 </body>
 </html>
