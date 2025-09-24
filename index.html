@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Darliane Ribeiro Cunha — CV Resumido</title>
-  <meta name="description" content="CV com foto compacta, fundo azul-escuro e letras brancas.">
+  <meta name="description" content="CV com foto circular pequena (96px), fundo azul-escuro e letras brancas.">
   <style>
     :root{
       --bg:#0b1020;
@@ -20,13 +20,13 @@
     *{box-sizing:border-box}
     html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif;line-height:1.6}
     a{color:var(--accent);text-decoration:none}
-    a:hover{text-decoration:underline}
+    a:hover{opacity:.9;text-decoration:underline}
     .wrap{max-width:1000px;margin:0 auto;padding:28px}
-    header{display:grid;grid-template-columns:140px 1fr;gap:18px;align-items:center;background:linear-gradient(135deg,#152250,#0e1632);border:1px solid var(--border);box-shadow:0 18px 36px rgba(0,0,0,.35);border-radius:18px;padding:18px}
-    @media (max-width:720px){header{grid-template-columns:1fr} .avatar-wrap{justify-self:center}}
-    .avatar-wrap{width:120px;height:120px;border-radius:999px;display:grid;place-items:center;background:var(--card);border:1px solid var(--border);padding:4px;box-shadow:0 10px 24px rgba(0,0,0,.35)}
-    .avatar{width:100%;height:100%;object-fit:cover;border-radius:999px}
-    h1{margin:0 0 6px;font-size:1.6rem}
+    header{display:grid;grid-template-columns:120px 1fr;gap:18px;align-items:center;background:linear-gradient(135deg,#152250,#0e1632);border:1px solid var(--border);box-shadow:0 18px 36px rgba(0,0,0,.35);border-radius:18px;padding:18px}
+    @media (max-width:720px){header{grid-template-columns:1fr} .avatar-wrap{justify-self:center;margin-bottom:6px}}
+    .avatar-wrap{width:96px;height:96px;border-radius:999px;display:grid;place-items:center;background:var(--card);border:1px solid var(--border);padding:3px;box-shadow:0 10px 24px rgba(0,0,0,.35), 0 0 0 4px rgba(122,162,255,.12)}
+    .avatar{width:100%;height:100%;object-fit:cover;border-radius:999px;filter:contrast(1.02) saturate(1.02)}
+    h1{margin:0 0 4px;font-size:1.55rem}
     .role{margin:0;color:#d9e6ff}
     .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
     .chip{background:var(--chip);border:1px solid var(--border);padding:6px 10px;border-radius:999px;font-size:.82rem;color:#cfe0ff}
